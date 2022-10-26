@@ -6,10 +6,10 @@ m = 3, n = 4.
 8 7,8 -7,1 9
 *************************************************************************************************/
 
-// Console.WriteLine("Ведите количество строк массива");
-// int rows = int.Parse(Console.ReadLine()!);
-// Console.WriteLine("Ведите количество столбцов массива");
-// int columns = int.Parse(Console.ReadLine()!);
+Console.WriteLine("Ведите количество строк массива");
+int rows = int.Parse(Console.ReadLine()!);
+Console.WriteLine("Ведите количество столбцов массива");
+int columns = int.Parse(Console.ReadLine()!);
 
 // double[,] array = FillArray(rows, columns, -10, 10);
 // PrintArrayD(array);
@@ -26,23 +26,28 @@ i = 4, j = 2 -> такого числа в массиве нет
 i = 1, j = 2 -> 2
 *************************************************************************************************/
 
-Console.Write("Ведите количество строк массива: ");
-int rows = int.Parse(Console.ReadLine()!);
-Console.Write("Ведите количество столбцов массива: ");
-int columns = int.Parse(Console.ReadLine()!);
+// int[,] array = GetArray(rows, columns, 0, 10);
+// PrintArray(array);
+
+// Console.Write("Ведите номер позиции в строке: ");
+// int IndexI = int.Parse(Console.ReadLine()!);
+// Console.Write("Ведите номер позиции в столбце: ");
+// int IndexJ = int.Parse(Console.ReadLine()!);
+// OutputIndex(array, IndexI, IndexJ);
+
+/*************************************************************************************************
+Задача 52. 
+Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
+*************************************************************************************************/
 
 int[,] array = GetArray(rows, columns, 0, 10);
 PrintArray(array);
-
-Console.Write("Ведите номер позиции в строке: ");
-int IndexI = int.Parse(Console.ReadLine()!);
-Console.Write("Ведите номер позиции в столбце: ");
-int IndexJ = int.Parse(Console.ReadLine()!);
-OutputIndex(array, IndexI, IndexJ);
-
-
-
-
+Average(array);
 
 
 
@@ -82,6 +87,21 @@ void OutputIndex(int[,] arr, int roWIndex, int colIndex)
         }
     }
 }
+// Метод нахождения среднего арифметического в каждом столбце массива:
+void Average(int[,] arr)
+{
+    for (int j = 0; j < arr.GetLength(1); j++)
+    {
+        double sum = 0;
+        for (int i = 0; i < arr.GetLength(0); i++)
+        {
+            sum += arr[i, j];
+        }
+        Console.Write($"{sum / arr.GetLength(0):f1}; ");
+    }
+
+}
+
 // Заполнение массива:
 int[,] GetArray(int m, int n, int minValue, int maxValue)
 {
