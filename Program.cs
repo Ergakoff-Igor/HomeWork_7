@@ -97,7 +97,7 @@ void Average(int[,] arr)
         {
             sum += arr[i, j];
         }
-        Console.Write($"{sum / arr.GetLength(0):f1}; ");
+        Console.Write($"Среднее арифметическое по столбцам: {sum / arr.GetLength(0):f1}; ");
     }
 
 }
