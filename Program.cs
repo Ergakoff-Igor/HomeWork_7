@@ -6,10 +6,10 @@ m = 3, n = 4.
 8 7,8 -7,1 9
 *************************************************************************************************/
 
-Console.WriteLine("Ведите количество строк массива");
-int rows = int.Parse(Console.ReadLine()!);
-Console.WriteLine("Ведите количество столбцов массива");
-int columns = int.Parse(Console.ReadLine()!);
+// Console.WriteLine("Ведите количество строк массива");
+// int rows = int.Parse(Console.ReadLine()!);
+// Console.WriteLine("Ведите количество столбцов массива");
+// int columns = int.Parse(Console.ReadLine()!);
 
 // double[,] array = FillArray(rows, columns, -10, 10);
 // PrintArrayD(array);
@@ -45,11 +45,29 @@ i = 1, j = 2 -> 2
 Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 *************************************************************************************************/
 
-int[,] array = GetArray(rows, columns, 0, 10);
-PrintArray(array);
-Average(array);
+// int[,] array = GetArray(rows, columns, 0, 10);
+// PrintArray(array);
+// Average(array);
 
+/*************************************************************************************************
+Задача 60. 
+Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+Массив размером 2 x 2 x 2
+66(0,0,0) 25(0,1,0)
+34(1,0,0) 41(1,1,0)
+27(0,0,1) 90(0,1,1)
+26(1,0,1) 55(1,1,1)
+*************************************************************************************************/
 
+Console.Write("Ведите длину массива: ");
+int x = int.Parse(Console.ReadLine()!);
+Console.Write("Ведите высоту массива: ");
+int y = int.Parse(Console.ReadLine()!);
+Console.Write("Ведите ширину массива: ");
+int z = int.Parse(Console.ReadLine()!);
+
+int[, ,] array = GetArray3(x, y, z, 10, 99);
+PrintArray3(array);
 
 // Заполнение массива случайными вещественными числами:
 double[,] FillArray(int m, int n, int minValue, int maxValue)
@@ -101,8 +119,7 @@ void Average(int[,] arr)
     }
 
 }
-
-// Заполнение массива:
+// Заполнение двумерного массива случайными целыми числами:
 int[,] GetArray(int m, int n, int minValue, int maxValue)
 {
     int[,] result = new int[m, n];
@@ -111,6 +128,22 @@ int[,] GetArray(int m, int n, int minValue, int maxValue)
         for (int j = 0; j < n; j++)
         {
             result[i, j] = new Random().Next(minValue, maxValue + 1);
+        }
+    }
+    return result;
+}
+// Заполнение трехмерного массива случайными целыми числами:
+int[, ,] GetArray3(int m, int n, int o, int minValue, int maxValue)
+{
+    int[, ,] result = new int[m, n, o];
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            for (int k = 0; k < o; k++)
+            {
+                result[i, j, k] = new Random().Next(minValue, maxValue + 1);
+            }
         }
     }
     return result;
@@ -137,5 +170,19 @@ void PrintArrayD(double[,] Array)
             Console.Write($"{Array[i, j]:f1} ");
         }
         Console.WriteLine();
+    }
+}
+// Вывод трехмерного массива:
+void PrintArray3(int[, ,] Array)
+{
+    for (int i = 0; i < Array.GetLength(0); i++)
+    {
+        for (int j = 0; j < Array.GetLength(1); j++)
+        {
+           for (int k = 0; k < Array.GetLength(2); k++)
+            {
+            Console.Write($"{Array[i, j, k]} ({i}, {j}, {k}) ");
+            } Console.WriteLine();
+        }
     }
 }
